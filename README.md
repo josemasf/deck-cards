@@ -1,4 +1,4 @@
-# 🃏 Desk Cards
+# 🃏 Deck Cards
 
 This project is the core to generate decks of cards and manage a basic logic of use.
 

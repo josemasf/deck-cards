@@ -31,3 +31,6 @@ jobs:
 
       - name: ✅ Run tests
         run: npm run test
+
+      - name: 🌱 Update version
+        run: npm version minor

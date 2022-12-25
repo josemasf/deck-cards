@@ -1,7 +1,7 @@
 {
-  "name": "desk-cards",
+  "name": "deck-cards",
   "version": "0.0.0",
-  "description": "Bootstrap your new TypeScript project with the bare minimum dependencies",
+  "description": "This project is the core to generate decks of cards and manage a basic logic of use.",
   "scripts": {
     "lint": "eslint --ignore-path .gitignore . --ext .ts",
     "lint:fix": "npm run lint -- --fix",
