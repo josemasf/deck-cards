@@ -1,5 +1,5 @@
 {
-  "name": "deck-cards",
+  "name": "@josemasf/deck-cards",
   "version": "0.0.0",
   "description": "This project is the core to generate decks of cards and manage a basic logic of use.",
   "scripts": {
@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/josemasf/desk-cards.git"
+    "url": "git+https://github.com/josemasf/deck-cards.git"
   },
   "author": "codelytv",
   "license": "MIT",
