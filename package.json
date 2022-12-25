@@ -1,6 +1,6 @@
 {
   "name": "@josemasf/deck-cards",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "This project is the core to generate decks of cards and manage a basic logic of use.",
   "scripts": {
     "lint": "eslint --ignore-path .gitignore . --ext .ts",
