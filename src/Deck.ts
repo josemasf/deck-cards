@@ -1,16 +1,21 @@
 export class Deck {
   CARDSAVAILIBLES: number[] = new Array(0);
   CARDSUSED: number[] = [];
+  cardsBySuit = 1;
+  suits = 1;
 
   constructor(
     private readonly cards: number,
-    private readonly suits: number = 1
+    private readonly _suits: number = 1
   ) {
     if (this.cards === 0) throw Error("empty deck its not allow");
     if (this.cards < 0) throw Error("deck should have 1 card minimum");
 
     if (this.cards > 0) {
-      this.CARDSAVAILIBLES = new Array(this.cards * this.suits);
+      this.CARDSAVAILIBLES = new Array(this.cards * this._suits);
+
+      this.suits = this._suits;
+      this.cardsBySuit = this.cards;
 
       for (let i = 0; i < this.CARDSAVAILIBLES.length; i++) {
         this.CARDSAVAILIBLES[i] = i + 1;

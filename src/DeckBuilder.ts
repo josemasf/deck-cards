@@ -1,3 +1,5 @@
+import { Deck } from "./Deck";
+
 export class DeckBuilder {
   cards = 1;
   cardsBySuit = 1;
@@ -17,5 +19,9 @@ export class DeckBuilder {
     this.cards = this.cards * suits;
     this.suits = suits;
     return this;
+  }
+
+  build() {
+    return new Deck(this.cardsBySuit, this.suits);
   }
 }
