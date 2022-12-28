@@ -45,43 +45,96 @@ describe("Deck", () => {
     expect(randomDeckInstantiator).toThrow(Error);
   });
 
-  it("draw random card", () => {
+  it("discard random card", () => {
     const deck = new Deck(1);
 
-    expect(deck.drawCard()).toEqual(1);
+    expect(deck.discard()).toEqual(1);
+  });
+
+  it("discard some position card", () => {
+    const deck = new Deck(40);
+
+    expect(deck.discard(2)).toEqual(3);
   });
 
   it("should not repeat a card", () => {
     const deck = new Deck(1);
 
-    expect(deck.drawCard()).toEqual(1);
-    expect(deck.drawCard()).toEqual(-1);
+    expect(deck.discard()).toEqual(1);
+    expect(deck.discard()).toEqual(-1);
   });
 
   it("should be accesible number of cards used", () => {
     const deck = new Deck(10);
 
-    deck.drawCard();
-    deck.drawCard();
-    deck.drawCard();
+    deck.discard();
+    deck.discard();
+    deck.discard();
 
-    expect(deck.cardsUsed()).toEqual(3);
+    expect(deck.used()).toEqual(3);
   });
 
   it("should be accesible cards used and availibles", () => {
     const deck = new Deck(10);
 
-    deck.drawCard();
-    deck.drawCard();
-    deck.drawCard();
+    deck.discard();
+    deck.discard();
+    deck.discard();
 
-    expect(deck.CARDSUSED).toHaveLength(3);
-    expect(deck.CARDSAVAILIBLES).toHaveLength(7);
+    expect(deck.usedCards).toHaveLength(3);
+    expect(deck.cardsAvailibles).toHaveLength(7);
   });
 
   it("should accept suits", () => {
     const deck = new Deck(10, 4);
 
     expect(deck.len()).toEqual(40);
+  });
+
+  it("should shuffle deck", () => {
+    const deck = new Deck(10, 1);
+
+    expect(deck.cardsAvailibles).toStrictEqual([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
+    deck.shuffle();
+
+    expect(deck.cardsAvailibles).not.toStrictEqual([
+      1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
+    ]);
+  });
+
+  it("should return the first card on top", () => {
+    const deck = new Deck(10, 1);
+
+    const first = deck.top();
+
+    expect(first).toStrictEqual([1]);
+  });
+
+  it("should return the first 3 card on top", () => {
+    const deck = new Deck(10, 1);
+
+    const firstThree = deck.top(3);
+
+    expect(firstThree).toStrictEqual([1, 2, 3]);
+  });
+
+  it("should throw error on negative positions", () => {
+    const randomDeckInstantiator = () => {
+      const deck = new Deck(10, 1);
+      deck.top(-3);
+    };
+
+    expect(randomDeckInstantiator).toThrow("positions top cant be negative");
+    expect(randomDeckInstantiator).toThrow(Error);
+  });
+
+  it("should throw error on positions lenght 0", () => {
+    const randomDeckInstantiator = () => {
+      const deck = new Deck(10, 1);
+      deck.top(0);
+    };
+
+    expect(randomDeckInstantiator).toThrow("positions top lenght cant be 0");
+    expect(randomDeckInstantiator).toThrow(Error);
   });
 });

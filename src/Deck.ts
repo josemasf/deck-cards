@@ -1,6 +1,6 @@
 export class Deck {
-  CARDSAVAILIBLES: number[] = new Array(0);
-  CARDSUSED: number[] = [];
+  cardsAvailibles: number[] = new Array(0);
+  usedCards: number[] = [];
   cardsBySuit = 1;
   suits = 1;
 
@@ -12,39 +12,63 @@ export class Deck {
     if (this.cards < 0) throw Error("deck should have 1 card minimum");
 
     if (this.cards > 0) {
-      this.CARDSAVAILIBLES = new Array(this.cards * this._suits);
+      this.cardsAvailibles = new Array(this.cards * this._suits);
 
       this.suits = this._suits;
       this.cardsBySuit = this.cards;
 
-      for (let i = 0; i < this.CARDSAVAILIBLES.length; i++) {
-        this.CARDSAVAILIBLES[i] = i + 1;
+      for (let i = 0; i < this.cardsAvailibles.length; i++) {
+        this.cardsAvailibles[i] = i + 1;
       }
     }
   }
 
   len(): number {
-    return this.CARDSAVAILIBLES.length;
+    return this.cardsAvailibles.length;
   }
 
-  drawCard(): number {
-    const card = this.CARDSAVAILIBLES[Math.floor(Math.random() * this.len())];
+  discard(position: number | undefined = undefined): number {
+    let positionToDelete: number = Math.floor(Math.random() * this.len());
 
-    this.CARDSUSED.push(card);
+    if (position) positionToDelete = position;
 
-    const indexUsed = this.CARDSAVAILIBLES.findIndex(
+    const card = this.cardsAvailibles[positionToDelete];
+
+    this.usedCards.push(card);
+
+    const indexUsed = this.cardsAvailibles.findIndex(
       (cardInDeck) => cardInDeck == card
     );
 
     if (indexUsed > -1) {
-      this.CARDSAVAILIBLES.splice(indexUsed, 1);
+      this.cardsAvailibles.splice(indexUsed, 1);
     } else {
       return -1;
     }
     return card;
   }
 
-  cardsUsed(): number {
-    return this.CARDSUSED.length;
+  used(): number {
+    return this.usedCards.length;
+  }
+
+  private randomizeOrder = ([...arr]) => {
+    let m = arr.length;
+    while (m) {
+      const i = Math.floor(Math.random() * m--);
+      [arr[m], arr[i]] = [arr[i], arr[m]];
+    }
+    return arr;
+  };
+
+  shuffle(): void {
+    this.cardsAvailibles = this.randomizeOrder(this.cardsAvailibles);
+  }
+
+  top(positions = 1) {
+    if (positions < 0) throw Error("positions top cant be negative");
+    if (positions === 0) throw Error("positions top lenght cant be 0");
+
+    return this.cardsAvailibles.slice(0, positions);
   }
 }

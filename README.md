@@ -2,21 +2,82 @@
 
 This project is the core to generate decks of cards and manage a basic logic of use.
 
-## Features
+## Installation
 
-- [TypeScript](https://www.typescriptlang.org/) (v4)
-- [Prettier](https://prettier.io/)
-- [ESLint](https://eslint.org/) with:
-  - [Simple Import Sort](https://github.com/lydell/eslint-plugin-simple-import-sort/)
-  - [Import plugin](https://github.com/benmosher/eslint-plugin-import/)
-  - And a few other ES2015+ related rules
-- [Jest](https://jestjs.io) with [DOM Testing Library](https://testing-library.com/docs/dom-testing-library/intro)
-- [GitHub Action workflows](https://github.com/features/actions) set up to run tests and linting on push
-- [SWC](https://swc.rs/): Execute your tests in less than 200ms
+```
+npm i @josemasf/deck-cards
+```
 
-## Running the app
+## Creating & Using a Deck
 
-- Install the dependencies: `npm install`
-- Execute the tests: `npm run test`
-- Check linter errors: `npm run lint`
-- Fix linter errors: `npm run lint:fix`
+Create a basic deck without suits
+
+```
+const deck = new Deck(20);
+```
+
+Create an advanced deck with several suits. For example a Spanish deck
+
+```
+const deck = new Deck(10,4);
+```
+
+## Inspect the Deck
+
+We can perform various actions on the deck
+
+### Top
+
+Get the first card on top
+
+```
+const first = deck.top();
+```
+
+Also we can pick some number of cards in the top
+
+```
+const firstFive = deck.top(5);
+```
+
+### Shuffle
+
+We can shuffle the deck and randomize the positions, because by default the array go from 1 to max length adding 1 number by position
+
+```
+const first = deck.shuffle();
+```
+
+### Discard
+
+You have the possibility of discarding a card, we can specify the position to discard or let it be random if we do not provide any
+
+```
+const random = deck.shuffle();
+
+const firstFive = deck.shuffle(5)
+```
+
+### Get number of card available
+
+```
+const deckAvailable = deck.len();
+```
+
+### Get number of card used
+
+```
+const random = deck.used();
+```
+
+### Get suits setted
+
+```
+deck.suits;
+```
+
+### Get card by suit setted
+
+```
+deck.cardsBySuit;
+```
