@@ -15,10 +15,10 @@
   "publishConfig": {
     "registry": "https://github.com/josemasf/deck-cards.git"
   },
-  "author": "codelytv",
+  "author": "JosemaSF",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/CodelyTV/typescript-basic-skeleton/issues"
+    "url": "https://github.com/josemasf/deck-cards/issues"
   },
   "homepage": "https://www.npmjs.com/package/@josemasf/deck-cards?activeTab=readme",
   "devDependencies": {
