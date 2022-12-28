@@ -1,12 +1,12 @@
-import { Deck } from "../src/Deck";
+import { Deck } from "../src/";
 
 describe("Deck", () => {
   it("can be instantiated without throwing errors", () => {
-    const randomCodelyberInstantiator = () => {
+    const randomDeckInstantiator = () => {
       new Deck(1);
     };
 
-    expect(randomCodelyberInstantiator).not.toThrow(TypeError);
+    expect(randomDeckInstantiator).not.toThrow(TypeError);
   });
 
   it("can generate a deck with 20 card", () => {
