@@ -53,9 +53,9 @@ const first = deck.shuffle();
 You have the possibility of discarding a card, we can specify the position to discard or let it be random if we do not provide any
 
 ```
-const random = deck.shuffle();
+const random = deck.discard();
 
-const firstFive = deck.shuffle(5)
+const firstFive = deck.discard(5)
 ```
 
 ### Get number of card available
