@@ -12,7 +12,7 @@ export class Deck {
    */
   constructor(
     private readonly cards: number,
-    private readonly _suits: number = 1
+    private readonly _suits: number = 1,
   ) {
     if (this.cards === 0) throw Error("empty deck its not allow");
     if (this.cards < 0) throw Error("deck should have 1 card minimum");
@@ -54,7 +54,7 @@ export class Deck {
     this.usedCards.push(card);
 
     const indexUsed = this.cardsAvailibles.findIndex(
-      (cardInDeck) => cardInDeck == card
+      (cardInDeck) => cardInDeck == card,
     );
 
     if (indexUsed > -1) {
