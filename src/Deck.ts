@@ -4,6 +4,12 @@ export class Deck {
   cardsBySuit = 1;
   suits = 1;
 
+  /**
+   * Represents a deck of cards.
+   * @param cards The number of cards in the deck.
+   * @param _suits The number of suits in the deck. Default value is 1.
+   * @throws Error if the deck is empty or has less than 1 card.
+   */
   constructor(
     private readonly cards: number,
     private readonly _suits: number = 1
@@ -23,10 +29,21 @@ export class Deck {
     }
   }
 
+  /**
+   * Returns the number of cards available in the deck.
+   *
+   * @returns The number of cards available in the deck.
+   */
   len(): number {
     return this.cardsAvailibles.length;
   }
 
+  /**
+   * Discards a card from the deck.
+   *
+   * @param position The position of the card to discard. If not provided, a random card will be discarded.
+   * @returns The discarded card, or -1 if the card was not found in the deck.
+   */
   discard(position: number | undefined = undefined): number {
     let positionToDelete: number = Math.floor(Math.random() * this.len());
 
@@ -48,8 +65,33 @@ export class Deck {
     return card;
   }
 
+  /**
+   * Returns the number of used cards in the deck.
+   *
+   * @returns The number of used cards.
+   */
   used(): number {
     return this.usedCards.length;
+  }
+
+  /**
+   * Shuffles the deck by randomizing the order of available cards.
+   */
+  shuffle(): void {
+    this.cardsAvailibles = this.randomizeOrder(this.cardsAvailibles);
+  }
+
+  /**
+   * Returns the top cards from the deck.
+   * @param positions The number of cards to return from the top of the deck.
+   * @returns An array of cards from the top of the deck.
+   * @throws Error if positions is negative or zero.
+   */
+  top(positions = 1) {
+    if (positions < 0) throw Error("positions top cant be negative");
+    if (positions === 0) throw Error("positions top lenght cant be 0");
+
+    return this.cardsAvailibles.slice(0, positions);
   }
 
   private randomizeOrder = ([...arr]) => {
@@ -60,15 +102,4 @@ export class Deck {
     }
     return arr;
   };
-
-  shuffle(): void {
-    this.cardsAvailibles = this.randomizeOrder(this.cardsAvailibles);
-  }
-
-  top(positions = 1) {
-    if (positions < 0) throw Error("positions top cant be negative");
-    if (positions === 0) throw Error("positions top lenght cant be 0");
-
-    return this.cardsAvailibles.slice(0, positions);
-  }
 }
