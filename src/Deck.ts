@@ -47,7 +47,7 @@ export class Deck {
   discard(position: number | undefined = undefined): number {
     let positionToDelete: number = Math.floor(Math.random() * this.len());
 
-    if (position) positionToDelete = position;
+    if (typeof position === "number") positionToDelete = position as number;
 
     const card = this.cardsAvailibles[positionToDelete];
 
@@ -58,7 +58,7 @@ export class Deck {
     );
 
     if (indexUsed > -1) {
-      this.cardsAvailibles.splice(indexUsed, 1);
+      this.cardsAvailibles.splice(positionToDelete, 1);
     } else {
       return -1;
     }
