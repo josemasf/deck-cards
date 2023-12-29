@@ -1,4 +1,4 @@
-import { Deck } from "./Deck";
+import { Deck } from "./";
 
 export class DeckBuilder {
   cards = 1;

@@ -55,6 +55,14 @@ describe("Deck", () => {
     const deck = new Deck(40);
 
     expect(deck.discard(2)).toEqual(3);
+    expect(deck.discard(2)).not.toEqual(3);
+
+    expect(deck.usedCards.length).toEqual(2);
+  });
+
+  it("should discard first position card", () => {
+    const deck = new Deck(40);
+    expect(deck.discard(0)).toEqual(1);
   });
 
   it("should not repeat a card", () => {
