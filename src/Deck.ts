@@ -12,7 +12,7 @@ export class Deck {
    */
   constructor(
     private readonly cards: number,
-    private readonly _suits: number = 1,
+    private readonly _suits: number = 1
   ) {
     if (this.cards === 0) throw Error("empty deck its not allow");
     if (this.cards < 0) throw Error("deck should have 1 card minimum");
@@ -44,17 +44,17 @@ export class Deck {
    * @param position The position of the card to discard. If not provided, a random card will be discarded.
    * @returns The discarded card, or -1 if the card was not found in the deck.
    */
-  discard(position: number | undefined = undefined): number {
+  discard(position = -1): number {
     let positionToDelete: number = Math.floor(Math.random() * this.len());
 
-    if (typeof position === "number") positionToDelete = position as number;
+    if (position > -1) positionToDelete = position as number;
 
     const card = this.cardsAvailibles[positionToDelete];
 
     this.usedCards.push(card);
 
     const indexUsed = this.cardsAvailibles.findIndex(
-      (cardInDeck) => cardInDeck == card,
+      (cardInDeck) => cardInDeck == card
     );
 
     if (indexUsed > -1) {
