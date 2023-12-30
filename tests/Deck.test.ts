@@ -145,4 +145,26 @@ describe("Deck", () => {
     expect(randomDeckInstantiator).toThrow("positions top lenght cant be 0");
     expect(randomDeckInstantiator).toThrow(Error);
   });
+
+  it("should disable a card", () => {
+    const deck = new Deck(10, 1);
+
+    deck.disableCard(1);
+
+    expect(deck.cardsAvailibles).toHaveLength(9);
+    expect(deck.disabledCards).toContain(1);
+  })
+
+  it("should throw error when disable a card that it not in the deck", () => {
+
+    const randomDeckInstantiator = () => {
+      const deck = new Deck(10, 1);
+      deck.disableCard(11);
+
+      expect(deck.cardsAvailibles).toHaveLength(10);
+    };
+    
+    expect(randomDeckInstantiator).toThrow("card not found");    
+    
+  })
 });

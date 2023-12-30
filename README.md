@@ -58,6 +58,18 @@ const random = deck.discard();
 const firstFive = deck.discard(5)
 ```
 
+### Disable a Card
+
+You can disable the use of a card in the deck. This might be useful in situations where certain cards should not be drawn or used in the game for a period of time.
+
+To disable a card, you need to use the `disableCard` method of the `deck` object. This method requires one argument: the index of the card you want to disable.
+
+For example, if you want to disable the second card in the deck (indices start from 0), you can do so in the following way:
+
+```
+deck.disableCard(1);
+```
+
 ### Get number of card available
 
 ```

@@ -1,6 +1,7 @@
 export class Deck {
   cardsAvailibles: number[] = new Array(0);
   usedCards: number[] = [];
+  disabledCards: number[] = [];
   cardsBySuit = 1;
   suits = 1;
 
@@ -12,7 +13,7 @@ export class Deck {
    */
   constructor(
     private readonly cards: number,
-    private readonly _suits: number = 1
+    private readonly _suits: number = 1,
   ) {
     if (this.cards === 0) throw Error("empty deck its not allow");
     if (this.cards < 0) throw Error("deck should have 1 card minimum");
@@ -54,7 +55,7 @@ export class Deck {
     this.usedCards.push(card);
 
     const indexUsed = this.cardsAvailibles.findIndex(
-      (cardInDeck) => cardInDeck == card
+      (cardInDeck) => cardInDeck == card,
     );
 
     if (indexUsed > -1) {
@@ -63,6 +64,24 @@ export class Deck {
       return -1;
     }
     return card;
+  }
+
+  /**
+   * Disables a card in the deck.
+   * @param {number} card - The card to be disabled.
+   * @throws {Error} If the card is not found in the deck.
+   */
+  disableCard(card: number): void {
+    const indexUsed = this.cardsAvailibles.findIndex(
+      (cardInDeck) => cardInDeck == card,
+    );
+
+    if (indexUsed > -1) {
+      this.cardsAvailibles.splice(indexUsed, 1);
+      this.disabledCards.push(card);
+    } else {
+      throw Error("card not found");
+    }
   }
 
   /**
